@@ -143,21 +143,10 @@ proc parse(input: seq[string]): seq[Passport] =
   if batch.len > 0:
     result.add batch.initPassport
 
-proc solve(input: seq[string]): (int, int) =
+day4:
   let passports = input.parse
   for p in passports:
     if p.allRequiredFields:
-      inc result[0]
+      inc part1
     if p.isValid:
-      inc result[1]
-
-let
-  filename = "inputs/4"
-  input = filename.read
-  (solution1, solution2) = input.solve
-
-echo solution1
-doAssert solution1 == 206
-
-echo solution2
-doAssert solution2 == 123
+      inc part2

@@ -28,7 +28,7 @@ proc parseSeat(input: string): Seat =
   result.row = input[0..6].parseBin(initBinMap("FB"))
   result.col = input[7..^1].parseBin(initBinMap("LR"))
 
-proc solve(input: seq[string]): (int, int) =
+day5:
   var
     seats: seq[Seat]
     ids: set[uint16]
@@ -42,16 +42,5 @@ proc solve(input: seq[string]): (int, int) =
     if thisId < idMin: idMin = thisId
     if thisId > idMax: idMax = thisId
   let allIds = {idMin..idMax}
-  result[0] = idMax.int
-  result[1] = toSeq(allIds - ids)[0].int
-
-let
-  filename = "inputs/5"
-  input = filename.read
-  (solution1, solution2) = input.solve
-
-echo solution1
-doAssert solution1 == 894
-
-echo solution2
-doAssert solution2 == 579
+  part1 = idMax.int
+  part2 = toSeq(allIds - ids)[0].int

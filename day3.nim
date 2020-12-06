@@ -25,7 +25,7 @@ proc stepY(pos: var Position, move: Move) =
 proc isTree(line: string, pos: Position): bool =
   result = line[pos.x] == '#'
 
-proc solve1(input: seq[string], move = initMove()): int =
+proc descend(input: seq[string], move = initMove()): int =
   var pos = initPosition(input[0].len)
   for line in input:
     if pos.y == 0:
@@ -34,7 +34,7 @@ proc solve1(input: seq[string], move = initMove()): int =
       pos.stepX(move)
     pos.stepY(move)
 
-proc solve2(input: seq[string]): int =
+day3:
   var slopes: seq[int]
   let moves = @[
     initMove(1, 1),
@@ -44,17 +44,6 @@ proc solve2(input: seq[string]): int =
     initMove(1, 2),
   ]
   for move in moves:
-    slopes.add input.solve1(move)
-  foldr(slopes, a * b)
-
-let
-  filename = "inputs/3"
-  input = filename.read
-  solution1 = input.solve1
-  solution2 = input.solve2
-
-echo solution1
-doAssert solution1 == 151
-
-echo solution2
-doAssert solution2 == 7540141059
+    slopes.add input.descend(move)
+  part1 = slopes[0]
+  part2 = foldr(slopes, a * b)
