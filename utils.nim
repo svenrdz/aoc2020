@@ -12,6 +12,10 @@ proc readIntSeq*(filename: string): seq[int] =
 proc readIntSet*(filename: string): IntSet =
   toIntSet(filename.readIntSeq)
 
+proc toSet*(str: string): set[char] =
+  for ch in str:
+    result.incl ch
+
 macro days(): untyped =
   result = newStmtList()
   for n in 1..25:

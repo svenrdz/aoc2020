@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+days=""
+for day in day*.nim; do
+  day=$(echo $day | cut -d. -f1)
+  days="$days, $day"
+done
+
+days=${days#, }
+echo "import $days" > run.nim
+nim c -o:build/run -r run.nim
+rm run.nim
+rm -rf build
