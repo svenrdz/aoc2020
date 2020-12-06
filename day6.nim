@@ -1,7 +1,5 @@
 import utils
 
-import strutils
-
 type
   Answers = set[char]
   Group = seq[Answers]
