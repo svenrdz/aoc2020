@@ -5,7 +5,6 @@ import hashes
 import tables
 import strscans
 import strutils
-import sequtils
 
 type
   Bag = tuple[adj, name: string]
